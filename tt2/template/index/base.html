@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>tt2</title>
+    <script async src="//jsfiddle.net/L9bvU/1/embed/"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .bs-junbotron-width{
+        margin: 50px 200px;
+        align: center;
+        vertical-align: middle;
+        height: 1000px;
+    }
+    .xyz {
+            background-size: auto;
+            text-align: left;
+            padding-top: 10px;
+        }
+    .btn-circle.btn-sm {
+            width: 30px;
+            height: 30px;
+            padding: 6px 0px;
+            border-radius: 15px;
+            font-size: 8px;
+            text-align: center;
+        }
+    .mycontent-left {
+          border-right: 1px solid rgba(255,0,0,0.20);
+          height: 500px;
+        }
+    .mycontent-right {
+          border-right: 1px solid rgba(255,0,0,0.20);
+          height: 500px;
+        }
+    .my-custom-scrollbar {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      overflow: auto;
+    }
+</style>
+<body>
+    <div class="jumbotron bs-junbotron-width">
+        <div class="position-relative align-top">
+            <div class="float-right">
+                <a type="button" href=""> Logout </a>
+            </div>
+            <h3>Content ?</h3>
+            <div class="float-right">
+                <a type="button" onclick="getData()"> Submit </a>
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <div class="form-control" contenteditable="true" id="text" onclick="GetSelectedText()">{{ data }}</di>
+            </div>
+            <div class="row">
+                <div class="col h-100" style="width:400;">
+<!--            <div class="mx-auto" style="width: 100%;">-->
+                    <input type="text" placeholder="Subject" style="width: 500px;">
+                </div>
+                <div class="col h-100" style="width:400;">
+                    <input type="text" placeholder="Attribute" style="width: 500px;">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label> Sentiment </label>
+                    <button type="button" class="btn btn-circle btn-sm" style="background-color:red;"></button>
+                    <button type="button" class="btn btn-circle btn-sm" style="background-color:tomato"></button>
+                    <button type="button" class="btn btn-circle btn-sm" style="background-color:orange"></button>
+                    <button type="button" class="btn btn-circle btn-sm" style="background-color:limegreen"></button>
+                    <button type="button" class="btn btn-circle btn-sm" style="background-color:green"></button>
+
+                </div>
+            </div>
+
+            <br>
+            <div class="container align-text-top" style="height: 500px; background-color: rgba(255,0,0,0.1);">
+                <div class="row">
+                    <div class="col h-100" style="width:400;">
+                        <div class="my-custom-scrollbar my-custom-scrollbar-primary" style="width: 94%">
+                        <p> OC </p>
+                        <div class="col px-md-5">
+                            <label class="checkbox">
+                              <input type="checkbox" value="">
+                              Option
+                            </label>
+                        </div>
+                        <div class="col px-md-5">
+                            <label class="checkbox">
+                              <input type="checkbox" value="">
+                              Option
+                            </label>
+                        </div>
+                    </div>
+                <div class="mycontent-left"></div>
+                </div>
+                    <div class="col-6 h-100">
+                        <div class="my-custom-scrollbar my-custom-scrollbar-primary" style="width: 96.7%">
+                            <p> NOC </p>
+                            <div class="col px-md-5">
+                                <label class="checkbox">
+                                  <input type="checkbox" value="">
+                                  Option
+                                </label>
+                            </div>
+                            <div class="col px-md-5">
+                                <label class="checkbox">
+                                  <input type="checkbox" value="">
+                                  Option
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="float-right">
+                <small> insight tagged ?</small>
+                <a type="button" href=""> Skip </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
+    var ps = new PerfectScrollbar(myCustomScrollbar);
+
+    var scrollbarY = myCustomScrollbar.querySelector('.ps__rail-y');
+
+    myCustomScrollbar.onscroll = function () {
+      scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 400px; right: ${-this.scrollLeft}px`;
+}
+</script>
+
+<script>
+    var d = {};
+    var lst = [];
+    function GetSelectedText () {
+
+        sel = window.getSelection();
+          if (sel.rangeCount && sel.getRangeAt) {
+            range = sel.getRangeAt(0);
+          }
+          // Set design mode to on
+          document.designMode = "on";
+          if (range) {
+            sel.removeAllRanges();
+            sel.addRange(range);
+          }
+          // Colorize text
+          document.execCommand("ForeColor", false, "red");
+          // Set design mode to off
+          document.designMode = "off";
+
+
+
+
+        var text = "None";
+        if (window.getSelection) {  // all browsers, except IE before version 9
+            var range = window.getSelection ();
+            if (range.toString() !== ""){
+                var text = range.toString();
+                d = {text: text};
+                lst.push(d);
+<!--                document.getElementById('text').onclick = changeColor;-->
+<!--                function changeColor(){-->
+<!--                    document.getElementById('text').style.color = "green";-->
+<!--                    currentColor = "green";-->
+<!--            }-->
+            }
+        }
+
+        else {
+            if (document.selection.createRange) { // Internet Explorer
+                var range = document.selection.createRange ();
+                alert (range.text);
+            }
+        }
+    };
+
+    function getData() {
+        $.ajax({
+          url: "/tagged_text/",
+          type: "POST", //send it through get method
+          data: {lst},
+          success: function(response) {
+            // Do something
+              window.location.href = response.url,
+              console.log(lst)
+            },
+          error: function(xhr) {
+            //Do Something to handle error
+          }
+
+        })
+    };
+
+<!--    document.getElementById('text').onclick = changeColor;-->
+<!--    function changeColor() {-->
+<!--        document.body.style.color = "purple";-->
+<!--    };-->
+
+</script>
+</html>
